@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Stats.Commands;
 using Stats.Config;
+using Stats.Repositories;
+using Stats.Repositories.Json;
 using Spectre.Cli.Extensions.DependencyInjection;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -38,7 +40,8 @@ namespace Stats
                         config.AddSimpleConsole();
                     }
                 )
-                .Configure<ActivitiesConfig>(configuration.GetSection("activities"))
+                .Configure<JsonDbConfig>(configuration.GetSection("jsonDb"))
+                .AddTransient<IActivitiesRepository, ActivitiesRepositoryJson>()
             ;
 
 

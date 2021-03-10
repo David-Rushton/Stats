@@ -1,0 +1,22 @@
+[
+    {
+        "name": "run",
+        "emoji": "🏃‍♂️",
+        "goal": 1
+    },
+    {
+        "name": "coffee",
+        "emoji": "☕",
+        "goal": 3
+    },
+    {
+        "name": "water",
+        "emoji": "🥛",
+        "goal": 3
+    },
+    {
+        "name": "sleep",
+        "emoji": "💤",
+        "goal": 8
+    }
+]

@@ -1,20 +1,17 @@
-using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 
-namespace Stats.Config
+namespace Stats.Model
 {
-    public class ActivitiesConfig
-    {
-        List<Activity> Activities { get; init; } = new();
-    }
-
-
     public class Activity
     {
+        [JsonPropertyName("name")]
         public string Name { get; init; } = string.Empty;
 
+        [JsonPropertyName("emoji")]
         public string Emoji { get; init; } = string.Empty;
 
+        [JsonPropertyName("goal")]
         public int Goal { get; init; }
     }
 }
