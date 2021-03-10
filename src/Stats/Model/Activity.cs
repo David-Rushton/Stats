@@ -11,6 +11,7 @@ namespace Stats.Model
         [JsonPropertyName("emoji")]
         public string Emoji { get; init; } = string.Empty;
 
+        // todo: is daily goal a better name?
         [JsonPropertyName("goal")]
         public int Goal { get; init; }
     }

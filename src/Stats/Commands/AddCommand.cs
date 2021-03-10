@@ -18,25 +18,29 @@ namespace Stats.Commands
 
         readonly IActivitiesRepository _activitiesRepository;
 
+        readonly IJournalRepository _journalRepository;
 
-        public AddCommand(ILogger<AddCommand> logger, IActivitiesRepository activitiesRepository) =>
-            (_logger, _activitiesRepository) = (logger, activitiesRepository)
+
+        public AddCommand(ILogger<AddCommand> logger, IActivitiesRepository activitiesRepository, IJournalRepository journalRepository) =>
+            (_logger, _activitiesRepository, _journalRepository) = (logger, activitiesRepository, journalRepository)
         ;
 
 
         public override async Task<int> ExecuteAsync(CommandContext context, AddSettings settings)
         {
-            var supportedActivity = await _activitiesRepository.GetActivities();
-            var isSupportedActivity = supportedActivity.Exists(a => a.Name == settings?.Activity);
+            var supportedActivities = await _activitiesRepository.GetActivities();
+            var requestedActivity = supportedActivities.Where(a => a.Name == settings?.Activity).FirstOrDefault();
+            var isSupportedActivity = requestedActivity is not null;
 
             if(isSupportedActivity)
             {
                 AnsiConsole.MarkupLine($"[green]Activity added to journal: {settings.Activity}[/]");
+                await _journalRepository.AddEventToDay(requestedActivity!, DateTime.Now);
                 return 0;
             }
             else
             {
-                AnsiConsole.MarkupLine($"[red]Activity not supported: {settings.Activity}[/]");
+                AnsiConsole.MarkupLine($"[red invert]Activity not supported: { settings.Activity ?? "<not supplied>" }[/]");
                 return 1;
             }
         }

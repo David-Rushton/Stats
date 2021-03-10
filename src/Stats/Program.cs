@@ -41,6 +41,7 @@ namespace Stats
                     }
                 )
                 .Configure<JsonDbConfig>(configuration.GetSection("jsonDb"))
+                .AddTransient<IJournalRepository, JournalRepositoryJson>()
                 .AddTransient<IActivitiesRepository, ActivitiesRepositoryJson>()
             ;
 
