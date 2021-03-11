@@ -1,22 +1,26 @@
 [
     {
         "name": "run",
-        "emoji": "🏃‍♂️",
-        "goal": 1
+        "emoji": "🏃",
+        "prompt": "How far did you run?",
+        "dailyGoal": 1
     },
     {
         "name": "coffee",
         "emoji": "☕",
-        "goal": 3
+        "prompt": "How many cups?",
+        "dailyGoal": 3
     },
     {
         "name": "water",
         "emoji": "🥛",
-        "goal": 3
+        "prompt": "How many glasses?",
+        "dailyGoal": 3
     },
     {
         "name": "sleep",
         "emoji": "💤",
-        "goal": 8
+        "prompt": "How many hours?",
+        "dailyGoal": 8
     }
 ]

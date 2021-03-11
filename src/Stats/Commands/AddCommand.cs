@@ -45,7 +45,7 @@ namespace Stats.Commands
                     table.AddRow
                     (
                         $"{activity.Emoji} {activity.Name}",
-                        activity.Goal.ToString()
+                        activity.DailyGoal.ToString()
                     );
 
 
@@ -59,16 +59,26 @@ namespace Stats.Commands
             // todo: render progress after add!  show the journal
             if(isSupportedActivity)
             {
-                AnsiConsole.MarkupLine($"[green]Activity added to journal: {settings.Activity}[/]");
-                var journal = await _journalRepository.AddEventToDay(requestedActivity!, DateTime.Now);
+                var activityValue = AnsiConsole.Ask<decimal>(requestedActivity!.Prompt);
+                var activityEvent = requestedActivity!.CreateEvent(activityValue);
+                var journal = await _journalRepository.AddEventToDay(activityEvent, DateTime.Now);
 
                 // todo: own method?
                 var tree = new Tree(journal.Day.ToString("dd MMMM"));
-                var activityTotals = journal.Activities.GroupBy(k => $"{k.Emoji} {k.Name}");
-                foreach(var activity in activityTotals)
-                    tree.AddNode($"[blue]{activity.Key} {activity.Count()}[/]");
+                var activityTotals = journal.ActivityEvents
+                    .GroupBy(k => k.Activity.Name)
+                    .ToDictionary(k => k.Key, v => new { Value = v.Sum(i => i.Value), Unit = v.First().Activity.Emoji })
+                ;
+
+                foreach(var (k, v) in activityTotals)
+                {
+                    var value = Convert.ToInt32(v.Value);
+                    var scale = string.Concat(Enumerable.Repeat(v.Unit, value));
+                    tree.AddNode($"[blue]{k}[/]: {scale} ({v.Value})");
+                }
 
 
+                AnsiConsole.MarkupLine($"[green]Activity added to journal: {settings.Activity}[/]");
                 AnsiConsole.Render(tree);
                 return 0;
             }

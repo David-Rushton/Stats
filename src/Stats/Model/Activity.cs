@@ -11,8 +11,19 @@ namespace Stats.Model
         [JsonPropertyName("emoji")]
         public string Emoji { get; init; } = string.Empty;
 
-        // todo: is daily goal a better name?
-        [JsonPropertyName("goal")]
-        public int Goal { get; init; }
+        [JsonPropertyName("prompt")]
+        public string Prompt { get; init; } = string.Empty;
+
+        [JsonPropertyName("dailyGoal")]
+        public decimal DailyGoal { get; init; }
+
+
+        public ActivityEvent CreateEvent(decimal value) =>
+            new ActivityEvent
+            {
+                Activity = this,
+                Value = value
+            }
+        ;
     }
 }

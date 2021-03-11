@@ -27,13 +27,13 @@ namespace Stats.Repositories
         ;
 
 
-        public async Task<Journal> AddEventToDay(Model.Activity activity, DateTime day)
+        public async Task<Journal> AddEventToDay(Model.ActivityEvent activityEvent, DateTime day)
         {
             var journalPath = Path.Join(_jsonDbConfig.Path, $"journal.{day.ToString("yyyyMMdd")}.json");
             var journal = await ReadDay(day);
 
             // update the journal
-            journal.Activities.Add(activity);
+            journal.ActivityEvents.Add(activityEvent);
 
             // persist changes
             var jsonOptions = new JsonSerializerOptions() { WriteIndented = true };

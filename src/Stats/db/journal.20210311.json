@@ -1,0 +1,41 @@
+{
+  "day": "2021-03-11T14:39:42.2169153+00:00",
+  "activityEvents": [
+    {
+      "activity": {
+        "name": "sleep",
+        "emoji": "\uD83D\uDCA4",
+        "prompt": "How many hours?",
+        "dailyGoal": 8
+      },
+      "value": 6
+    },
+    {
+      "activity": {
+        "name": "coffee",
+        "emoji": "\u2615",
+        "prompt": "How many cups?",
+        "dailyGoal": 3
+      },
+      "value": 2
+    },
+    {
+      "activity": {
+        "name": "water",
+        "emoji": "\uD83E\uDD5B",
+        "prompt": "How many glasses?",
+        "dailyGoal": 3
+      },
+      "value": 2
+    },
+    {
+      "activity": {
+        "name": "water",
+        "emoji": "\uD83E\uDD5B",
+        "prompt": "How many glasses?",
+        "dailyGoal": 3
+      },
+      "value": 0.5
+    }
+  ]
+}

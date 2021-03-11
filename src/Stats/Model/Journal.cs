@@ -10,7 +10,7 @@ namespace Stats.Model
         [JsonPropertyName("day")]
         public DateTime Day { get; init; }
 
-        [JsonPropertyName("activities")]
-        public List<Activity> Activities { get; init; } = new();
+        [JsonPropertyName("activityEvents")]
+        public List<ActivityEvent> ActivityEvents { get; init; } = new();
     }
 }

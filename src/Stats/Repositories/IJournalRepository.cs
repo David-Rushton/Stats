@@ -7,7 +7,7 @@ namespace Stats.Repositories
 {
     public interface IJournalRepository
     {
-        Task<Journal> AddEventToDay(Activity activity, DateTime day);
+        Task<Journal> AddEventToDay(Model.ActivityEvent activity, DateTime day);
 
         Task<Journal> ReadDay(DateTime day);
     }
