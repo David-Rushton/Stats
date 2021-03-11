@@ -3,7 +3,7 @@
         "name": "run",
         "emoji": "🏃",
         "prompt": "How far did you run?",
-        "dailyGoal": 1
+        "dailyGoal": 3
     },
     {
         "name": "coffee",

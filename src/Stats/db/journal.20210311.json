@@ -36,6 +36,60 @@
         "dailyGoal": 3
       },
       "value": 0.5
+    },
+    {
+      "activity": {
+        "name": "coffee",
+        "emoji": "\u2615",
+        "prompt": "How many cups?",
+        "dailyGoal": 3
+      },
+      "value": 1
+    },
+    {
+      "activity": {
+        "name": "coffee",
+        "emoji": "\u2615",
+        "prompt": "How many cups?",
+        "dailyGoal": 3
+      },
+      "value": 0.5
+    },
+    {
+      "activity": {
+        "name": "sleep",
+        "emoji": "\uD83D\uDCA4",
+        "prompt": "How many hours?",
+        "dailyGoal": 8
+      },
+      "value": 0.5
+    },
+    {
+      "activity": {
+        "name": "sleep",
+        "emoji": "\uD83D\uDCA4",
+        "prompt": "How many hours?",
+        "dailyGoal": 8
+      },
+      "value": 0.1
+    },
+    {
+      "activity": {
+        "name": "sleep",
+        "emoji": "\uD83D\uDCA4",
+        "prompt": "How many hours?",
+        "dailyGoal": 8
+      },
+      "value": 0.1
+    },
+    {
+      "activity": {
+        "name": "coffee",
+        "emoji": "\u2615",
+        "prompt": "How many cups?",
+        "dailyGoal": 3
+      },
+      "value": 0.5
     }
   ]
 }

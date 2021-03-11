@@ -64,7 +64,11 @@ namespace Stats.Commands
                 var journal = await _journalRepository.AddEventToDay(activityEvent, DateTime.Now);
 
                 // todo: own method?
-                var tree = new Tree(journal.Day.ToString("dd MMMM"));
+                var barChart = new BarChart()
+                    .ShowValues()
+                    .Label(journal.Day.ToString("dd MMMM"))
+                ;
+
                 var activityTotals = journal.ActivityEvents
                     .GroupBy(k => k.Activity.Name)
                     .ToDictionary(k => k.Key, v => new { Value = v.Sum(i => i.Value), Unit = v.First().Activity.Emoji })
@@ -72,19 +76,30 @@ namespace Stats.Commands
 
                 foreach(var (k, v) in activityTotals)
                 {
-                    var value = Convert.ToInt32(v.Value);
-                    var scale = string.Concat(Enumerable.Repeat(v.Unit, value));
-                    tree.AddNode($"[blue]{k}[/]: {scale} ({v.Value})");
+                    barChart.AddItem($"{k} {v.Unit}", Convert.ToDouble(v.Value), GetColor(v.Value));
                 }
 
 
                 AnsiConsole.MarkupLine($"[green]Activity added to journal: {settings.Activity}[/]");
-                AnsiConsole.Render(tree);
+                AnsiConsole.Render(barChart);
                 return 0;
             }
 
             AnsiConsole.MarkupLine($"[red invert]Activity not supported: { settings.Activity ?? "<not supplied>" }[/]");
             return 1;
+
+
+
+            Color GetColor(decimal value) =>
+                requestedActivity!.DailyGoal switch
+                {
+                    // bug: this is the goal for the added activity - not the reported one
+                    decimal goal when value < goal    => Color.Red,
+                    decimal goal when value > goal    => Color.Green,
+                    _                                 => Color.Yellow
+                }
+
+            ;
         }
     }
 }
