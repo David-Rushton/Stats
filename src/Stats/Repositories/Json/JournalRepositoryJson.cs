@@ -56,6 +56,9 @@ namespace Stats.Repositories
                 using var stream = File.OpenRead(journalPath);
                 var journal = await JsonSerializer.DeserializeAsync<Journal>(stream);
 
+                // todo:
+                Debug.Assert(journal is not null, "Journal is null.  Cannot");
+
                 return journal;
             }
 

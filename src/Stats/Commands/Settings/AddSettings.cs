@@ -10,5 +10,8 @@ namespace Stats.Commands.Settings
     {
         [CommandArgument(0, "[Activity]")]
         public string? Activity { get; set; }
+
+        [CommandOption("-l|--list")]
+        public bool ListActivities { get; set; }
     }
 }
